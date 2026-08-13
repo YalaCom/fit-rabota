@@ -9,6 +9,7 @@
   <meta name="description" content="FIT — складская карьерная игра">
   <title>FIT — Карьера на складе</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ui.css?v=2">
 </head>
 <body>
   <div class="app-shell">
@@ -22,9 +23,7 @@
       </div>
       <button class="icon-button" id="soundToggle" aria-label="Переключить звук">S</button>
     </header>
-
     <main id="screen" class="screen"></main>
-
     <nav id="bottomNav" class="bottom-nav hidden">
       <button class="nav-item active" data-tab="home"><span class="nav-icon">H</span><span>Главная</span></button>
       <button class="nav-item" data-tab="work"><span class="nav-icon">W</span><span>Смена</span></button>
@@ -32,9 +31,8 @@
       <button class="nav-item" data-tab="profile"><span class="nav-icon">P</span><span>Профиль</span></button>
     </nav>
   </div>
-
   <div id="toast" class="toast" role="status"></div>
   <div id="modalRoot"></div>
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

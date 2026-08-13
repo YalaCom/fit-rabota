@@ -1,1 +1,35 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>FIT</title></head><body><h1>FIT</h1><p>Складская карьера</p></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#090c10">
+  <meta name="description" content="FIT — складская карьерная игра">
+  <title>FIT — Складская карьера</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">FIT</div>
+        <div class="brand-copy">
+          <strong>Складская карьера</strong>
+          <span id="headerStatus">Первый рабочий день</span>
+        </div>
+      </div>
+      <button class="icon-button" id="soundToggle" aria-label="Переключить звук">S</button>
+    </header>
+    <main id="screen" class="screen"></main>
+    <nav id="bottomNav" class="bottom-nav hidden">
+      <button class="nav-item active" data-tab="home"><span class="nav-icon">H</span><span>Главная</span></button>
+      <button class="nav-item" data-tab="work"><span class="nav-icon">W</span><span>Работа</span></button>
+      <button class="nav-item" data-tab="career"><span class="nav-icon">C</span><span>Карьера</span></button>
+      <button class="nav-item" data-tab="profile"><span class="nav-icon">P</span><span>Профиль</span></button>
+    </nav>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <div id="modalRoot"></div>
+  <script src="app.js"></script>
+</body>
+</html>

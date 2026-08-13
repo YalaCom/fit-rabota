@@ -13,16 +13,9 @@
   <div id="app" class="app">
     <header class="topbar">
       <button class="brand" id="homeLogo" aria-label="Главная"><span class="fit-logo">FIT</span><span class="brand-text"><b>Карьера</b><small id="headerRole">Складской симулятор</small></span></button>
-      <div class="top-actions">
-        <div class="mini-balance" id="topBalance">0 ₽</div>
-        <button class="icon-btn" id="soundBtn" aria-label="Звук">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15 9.5a4 4 0 0 1 0 5"/><path d="M17.5 7a7.5 7.5 0 0 1 0 10"/></svg>
-        </button>
-      </div>
+      <div class="top-actions"><div class="mini-balance" id="topBalance">0 ₽</div><button class="icon-btn" id="soundBtn" aria-label="Звук"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15 9.5a4 4 0 0 1 0 5"/><path d="M17.5 7a7.5 7.5 0 0 1 0 10"/></svg></button></div>
     </header>
-
     <main id="screen" class="screen"></main>
-
     <nav id="bottomNav" class="bottom-nav hidden">
       <button data-tab="home" class="nav-item active"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3V10.5Z"/></svg><span>Главная</span></button>
       <button data-tab="work" class="nav-item"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM8 7V4h8v3M4 12h16"/></svg><span>Смена</span></button>
@@ -30,9 +23,26 @@
       <button data-tab="profile" class="nav-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.8-4 3.3-6 7.5-6s6.7 2 7.5 6"/></svg><span>Профиль</span></button>
     </nav>
   </div>
-
-  <div id="toast" class="toast"></div>
-  <div id="modalRoot"></div>
+  <div id="toast" class="toast"></div><div id="modalRoot"></div>
   <script src="app.js"></script>
+  <script>
+    if(typeof state!=='undefined'){state.bestCombo=state.bestCombo||0;state.combo=state.combo||0;state.missed=state.missed||0;save();}
+    if(typeof spawnBox==='function'){
+      const baseSpawn=spawnBox;
+      spawnBox=function(){
+        const zone=document.getElementById('workZone');
+        if(!zone)return baseSpawn();
+        if(zone.querySelectorAll('.box,.crate').length>5)return;
+        const b=document.createElement('button');
+        const damaged=Math.random()<0.12;
+        b.className='crate'+(damaged?' bad':'');
+        b.innerHTML='<span>'+(damaged?'МЯТАЯ':'FIT')+'</span>';
+        b.style.left=(6+Math.random()*76)+'%';b.style.bottom=(73+Math.random()*34)+'px';
+        b.onclick=()=>{state.boxes++;state.combo++;state.bestCombo=Math.max(state.bestCombo,state.combo);const gain=damaged?2:4;state.todayEarned+=gain;state.money+=gain;state.reputation+=damaged?1:3;state.careerPoints+=2+Math.floor(state.combo/5);b.remove();save();updateOutsourceHud();const c=document.getElementById('comboHud');if(c)c.textContent='КОМБО ×'+state.combo;};
+        zone.appendChild(b);
+        setTimeout(()=>{if(b.isConnected){b.remove();state.missed++;state.combo=0;state.reputation=Math.max(0,state.reputation-1);save();}},2100);
+      }
+    }
+  </script>
 </body>
 </html>

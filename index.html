@@ -2,33 +2,36 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-  <meta name="theme-color" content="#090c10">
-  <meta name="description" content="FIT — складская карьерная игра">
-  <title>FIT — Складская карьера</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#0a0c0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>FIT — Карьера на складе</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-shell">
+  <div id="app" class="app">
     <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark">FIT</div>
-        <div class="brand-copy">
-          <strong>Складская карьера</strong>
-          <span id="headerStatus">Первый рабочий день</span>
-        </div>
+      <button class="brand" id="homeLogo" aria-label="Главная"><span class="fit-logo">FIT</span><span class="brand-text"><b>Карьера</b><small id="headerRole">Складской симулятор</small></span></button>
+      <div class="top-actions">
+        <div class="mini-balance" id="topBalance">0 ₽</div>
+        <button class="icon-btn" id="soundBtn" aria-label="Звук">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15 9.5a4 4 0 0 1 0 5"/><path d="M17.5 7a7.5 7.5 0 0 1 0 10"/></svg>
+        </button>
       </div>
-      <button class="icon-button" id="soundToggle" aria-label="Переключить звук">S</button>
     </header>
+
     <main id="screen" class="screen"></main>
+
     <nav id="bottomNav" class="bottom-nav hidden">
-      <button class="nav-item active" data-tab="home"><span class="nav-icon">H</span><span>Главная</span></button>
-      <button class="nav-item" data-tab="work"><span class="nav-icon">W</span><span>Работа</span></button>
-      <button class="nav-item" data-tab="career"><span class="nav-icon">C</span><span>Карьера</span></button>
-      <button class="nav-item" data-tab="profile"><span class="nav-icon">P</span><span>Профиль</span></button>
+      <button data-tab="home" class="nav-item active"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3V10.5Z"/></svg><span>Главная</span></button>
+      <button data-tab="work" class="nav-item"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM8 7V4h8v3M4 12h16"/></svg><span>Смена</span></button>
+      <button data-tab="career" class="nav-item"><svg viewBox="0 0 24 24"><path d="M5 20V10m7 10V4m7 16v-7M3 20h18"/></svg><span>Карьера</span></button>
+      <button data-tab="profile" class="nav-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.8-4 3.3-6 7.5-6s6.7 2 7.5 6"/></svg><span>Профиль</span></button>
     </nav>
   </div>
-  <div id="toast" class="toast" role="status"></div>
+
+  <div id="toast" class="toast"></div>
   <div id="modalRoot"></div>
   <script src="app.js"></script>
 </body>

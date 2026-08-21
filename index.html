@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#07090d">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>TomMartFM</title>
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
   <link rel="stylesheet" href="listener-live.css?v=1">
 </head>
 <body>
@@ -14,13 +14,13 @@
   <main class="app">
     <header class="topbar">
       <div class="brand">TomMart<span>FM</span></div>
-      <div class="live-pill" id="livePill"><i></i><span id="livePillText">ON AIR</span></div>
+      <div class="live-pill" id="livePill"><i></i><span id="livePillText">ONE WAVE</span></div>
     </header>
 
     <section class="hero">
-      <p class="eyebrow">INTERNET RADIO</p>
-      <h1>Твоя музыка.<br><span>Твой эфир.</span></h1>
-      <p class="sub">TomMartFM — радио, которое всегда с тобой.</p>
+      <p class="eyebrow">SYNCHRONIZED INTERNET RADIO</p>
+      <h1>Одна волна.<br><span>Для всех.</span></h1>
+      <p class="sub">Один и тот же трек и одна и та же секунда на всех подключённых устройствах.</p>
 
       <div class="player-card" id="playerCard">
         <div class="vinyl-wrap">
@@ -28,34 +28,27 @@
             <div class="vinyl-ring"></div>
             <div class="vinyl-label">TM<br><b>FM</b></div>
           </div>
-          <div class="signal" id="signal" aria-hidden="true">
-            <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-          </div>
+          <div class="signal" id="signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         </div>
 
         <div class="now">
-          <span id="nowLabel">СЕЙЧАС ИГРАЕТ</span>
+          <span id="nowLabel">ОБЩИЙ ЭФИР</span>
           <strong id="trackTitle">TomMartFM</strong>
-          <p id="trackArtist">Нажми Play, чтобы включить радио</p>
+          <p id="trackArtist">Подготавливаю общую волну…</p>
         </div>
 
         <div class="progress-wrap" id="progressWrap">
           <span id="currentTime">0:00</span>
-          <input id="progress" type="range" min="0" max="100" value="0" aria-label="Перемотка">
+          <input id="progress" type="range" min="0" max="100" value="0" disabled aria-label="Общая позиция эфира">
           <span id="duration">0:00</span>
         </div>
 
-        <div class="controls">
-          <button class="icon-btn" id="prevBtn" aria-label="Предыдущий трек">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6.5 9 12l10 5.5z"/></svg>
-          </button>
-          <button class="play-btn" id="playBtn" aria-label="Воспроизвести">
+        <div class="controls one-control">
+          <button class="play-btn" id="playBtn" aria-label="Слушать общую волну" disabled>
             <svg id="playIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
           </button>
-          <button class="icon-btn" id="nextBtn" aria-label="Следующий трек">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6.5 15 12 5 17.5z"/></svg>
-          </button>
         </div>
+        <div class="wave-note" id="waveNote">Песни нельзя переключать или перематывать — это единый радиоэфир.</div>
 
         <div class="volume-row">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zm12.5-.5a5 5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12"/></svg>
@@ -67,25 +60,59 @@
 
     <section class="station-grid">
       <article><small>СТАНЦИЯ</small><strong>TomMartFM</strong></article>
-      <article><small>РЕЖИМ</small><strong id="modeValue">24 / 7</strong></article>
+      <article><small>СИНХРОН</small><strong id="modeValue">ПОДКЛЮЧЕНИЕ</strong></article>
+    </section>
+
+    <section class="studio-card" id="studioCard">
+      <button class="studio-toggle" id="studioToggle" type="button">
+        <span><small>УПРАВЛЕНИЕ ЭФИРОМ</small><strong>Студия TomMartFM</strong></span>
+        <b id="studioChevron">+</b>
+      </button>
+      <div class="studio-panel" id="studioPanel" hidden>
+        <div class="studio-status-row">
+          <span id="syncState" class="studio-state"><i></i> <b>CONNECTING</b></span>
+          <span>Слушателей: <b id="listenerCount">0</b></span>
+        </div>
+
+        <button class="live-studio-btn" id="liveBtn" type="button">
+          <span class="mic-dot"></span><b id="liveBtnText">ВЫЙТИ В ПРЯМОЙ ЭФИР</b>
+        </button>
+        <div class="meter"><i id="micMeter"></i></div>
+        <p class="studio-hint" id="airState">Микрофон выключен</p>
+
+        <div class="quick-grid">
+          <button id="adBtn" class="quick-btn" type="button"><small>ВСТАВКА</small><strong>РЕКЛАМА</strong></button>
+          <button id="jokeBtn" class="quick-btn" type="button"><small>ПРОГРАММА</small><strong>АНЕКДОТ</strong></button>
+          <button id="jingleBtn" class="quick-btn wide" type="button"><small>СТАНЦИЯ</small><strong>ДЖИНГЛ</strong></button>
+        </div>
+
+        <div class="studio-message"><strong id="studioStatus">Студия подключается…</strong><span id="studioSub">Команды будут запускаться одновременно у всех слушателей.</span></div>
+
+        <details class="library-details">
+          <summary>Все джинглы, рекламы и анекдоты</summary>
+          <h3>Джинглы</h3><div id="jingleList" class="control-list"></div>
+          <h3>Реклама</h3><div id="adList" class="control-list"></div>
+          <h3>Анекдоты</h3><div id="jokeList" class="control-list"></div>
+        </details>
+      </div>
     </section>
 
     <section class="playlist-card">
       <div class="section-head">
-        <div><small>ПЛЕЙЛИСТ</small><h2>В эфире</h2></div>
-        <span id="trackCount">0 треков</span>
+        <div><small>ОБЩАЯ ВОЛНА</small><h2>Сейчас и дальше</h2></div>
+        <span id="trackCount">—</span>
       </div>
       <div id="playlist" class="playlist"></div>
     </section>
 
-    <footer>TomMartFM • Internet Radio</footer>
+    <footer>TomMartFM • One Wave • Internet Radio</footer>
   </main>
 
   <audio id="audio" preload="metadata" playsinline></audio>
   <audio id="specialAudio" preload="auto" playsinline></audio>
-  <audio id="liveAudio" autoplay playsinline></audio>
+  <audio id="liveAudio" playsinline></audio>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="https://unpkg.com/mqtt@4.3.7/dist/mqtt.min.js"></script>
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

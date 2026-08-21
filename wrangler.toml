@@ -1,3 +1,4 @@
 name = "fit-career-game"
 main = "worker.js"
 compatibility_date = "2026-08-21"
+# Trigger Cloudflare build: 2026-08-21 16:55 +03

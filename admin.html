@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#07090d">
+  <title>TomMartFM Studio</title>
+  <link rel="stylesheet" href="admin.css?v=1">
+</head>
+<body>
+  <main class="studio">
+    <header class="head">
+      <div><small>TOMMARTFM</small><h1>STUDIO</h1></div>
+      <div class="online" id="syncState"><i></i><span>CONNECTING</span></div>
+    </header>
+
+    <section class="live-card">
+      <div class="live-top">
+        <div><small>ПРЯМОЙ ЭФИР</small><strong id="airState">Эфир выключен</strong></div>
+        <div class="listeners"><b id="listenerCount">0</b><span>слушателей</span></div>
+      </div>
+      <div class="meter"><i id="micMeter"></i></div>
+      <button class="live-btn" id="liveBtn"><span id="liveBtnText">ВЫЙТИ В ЭФИР</span></button>
+      <p id="liveHint">Нажми кнопку — телефон запросит доступ к микрофону.</p>
+    </section>
+
+    <section class="quick-grid">
+      <button class="quick ad" id="adBtn"><small>ВСТАВКА</small><strong>РЕКЛАМА</strong><span>следующая по очереди</span></button>
+      <button class="quick joke" id="jokeBtn"><small>ПРОГРАММА</small><strong>АНЕКДОТ</strong><span>без смеха после</span></button>
+    </section>
+
+    <section class="card">
+      <div class="section-head"><div><small>ДЖИНГЛЫ</small><h2>Быстрый запуск</h2></div><span>4 шт.</span></div>
+      <div class="button-list" id="jingleList"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-head"><div><small>РЕКЛАМА</small><h2>Все ролики</h2></div><span>4 шт.</span></div>
+      <div class="button-list" id="adList"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-head"><div><small>АНЕКДОТЫ</small><h2>Все записи</h2></div><span>4 шт.</span></div>
+      <div class="button-list" id="jokeList"></div>
+    </section>
+
+    <section class="status-card">
+      <small>СЕЙЧАС</small>
+      <strong id="studioStatus">Студия готова</strong>
+      <p id="studioSub">Музыка у слушателей играет обычно.</p>
+    </section>
+  </main>
+
+  <audio id="monitorAudio" playsinline></audio>
+  <script src="https://unpkg.com/mqtt@4.3.7/dist/mqtt.min.js"></script>
+  <script src="admin.js?v=1"></script>
+</body>
+</html>

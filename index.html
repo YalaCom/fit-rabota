@@ -1,1 +1,87 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#0a0c0f"><title>FIT — Карьера на складе</title><link rel="stylesheet" href="ui.css?v=3"></head><body><div class="app-shell"><header class="topbar"><div class="brand"><div class="brand-mark">FIT</div><div class="brand-copy"><strong>Карьера на складе</strong><span id="headerStatus">Первый рабочий день</span></div></div><button class="icon-button" id="soundToggle" aria-label="Звук">S</button></header><main id="screen" class="screen"></main><nav id="bottomNav" class="bottom-nav hidden"><button class="nav-item active" data-tab="home"><span class="nav-icon">H</span><span>Главная</span></button><button class="nav-item" data-tab="work"><span class="nav-icon">W</span><span>Смена</span></button><button class="nav-item" data-tab="career"><span class="nav-icon">C</span><span>Карьера</span></button><button class="nav-item" data-tab="profile"><span class="nav-icon">P</span><span>Профиль</span></button></nav></div><div id="toast" class="toast"></div><div id="modalRoot"></div><script src="app.js?v=3"></script></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07090d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>TomMartFM</title>
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">TomMart<span>FM</span></div>
+      <div class="live-pill"><i></i> ON AIR</div>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">INTERNET RADIO</p>
+      <h1>Твоя музыка.<br><span>Твой эфир.</span></h1>
+      <p class="sub">TomMartFM — радио, которое всегда с тобой.</p>
+
+      <div class="player-card">
+        <div class="vinyl-wrap">
+          <div class="vinyl" id="vinyl">
+            <div class="vinyl-ring"></div>
+            <div class="vinyl-label">TM<br><b>FM</b></div>
+          </div>
+          <div class="signal" id="signal" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+
+        <div class="now">
+          <span>СЕЙЧАС ИГРАЕТ</span>
+          <strong id="trackTitle">TomMartFM</strong>
+          <p id="trackArtist">Нажми Play, чтобы включить радио</p>
+        </div>
+
+        <div class="progress-wrap">
+          <span id="currentTime">0:00</span>
+          <input id="progress" type="range" min="0" max="100" value="0" aria-label="Перемотка">
+          <span id="duration">0:00</span>
+        </div>
+
+        <div class="controls">
+          <button class="icon-btn" id="prevBtn" aria-label="Предыдущий трек">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6.5 9 12l10 5.5z"/></svg>
+          </button>
+          <button class="play-btn" id="playBtn" aria-label="Воспроизвести">
+            <svg id="playIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <button class="icon-btn" id="nextBtn" aria-label="Следующий трек">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6.5 15 12 5 17.5z"/></svg>
+          </button>
+        </div>
+
+        <div class="volume-row">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zm12.5-.5a5 5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12"/></svg>
+          <input id="volume" type="range" min="0" max="1" step="0.01" value="0.85" aria-label="Громкость">
+          <b id="volumeValue">85%</b>
+        </div>
+      </div>
+    </section>
+
+    <section class="station-grid">
+      <article><small>СТАНЦИЯ</small><strong>TomMartFM</strong></article>
+      <article><small>РЕЖИМ</small><strong>24 / 7</strong></article>
+    </section>
+
+    <section class="playlist-card">
+      <div class="section-head">
+        <div><small>ПЛЕЙЛИСТ</small><h2>В эфире</h2></div>
+        <span id="trackCount">0 треков</span>
+      </div>
+      <div id="playlist" class="playlist"></div>
+    </section>
+
+    <footer>TomMartFM • Internet Radio</footer>
+  </main>
+
+  <audio id="audio" preload="metadata" playsinline></audio>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="app.js?v=1"></script>
+</body>
+</html>
